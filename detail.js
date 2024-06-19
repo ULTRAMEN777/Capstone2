@@ -43,7 +43,6 @@ function displaySurahDetail(surah) {
         <p>${surah.deskripsi}</p>
         <h3>Ayat:</h3>
         <div id="ayat-list"></div>
-        <button id="bookmark-btn" onclick="toggleBookmark()">Bookmark</button>
     `;
     
     let ayatList = document.getElementById('ayat-list');
