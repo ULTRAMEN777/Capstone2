@@ -15,7 +15,7 @@ function fetchSurahDetail(nomor) {
     fetch(`https://equran.id/api/v2/surat/${nomor}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
+                throw new Error('Network response was not ok');
             }
             return response.json();
         })
@@ -23,8 +23,8 @@ function fetchSurahDetail(nomor) {
             displaySurahDetail(data.data);
         })
         .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('surah-detail').innerHTML = '<p>Error fetching Surah details.</p>';
+            console.error('Error fetching Surah details:', error);
+            document.getElementById('surah-detail').innerHTML = '<p>Error fetching Surah details. Please try again later.</p>';
         });
 }
 
