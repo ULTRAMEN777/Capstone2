@@ -12,6 +12,13 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function fetchSurahDetail(nomor) {
+    // Pastikan nomor surah adalah angka dan valid
+    if (isNaN(nomor) || nomor < 1 || nomor > 114) {
+        console.error('Invalid surah number:', nomor);
+        document.getElementById('surah-detail').innerHTML = '<p>Invalid Surah number.</p>';
+        return;
+    }
+
     fetch(`https://equran.id/api/v2/surat/${nomor}`)
         .then(response => {
             if (!response.ok) {
@@ -24,11 +31,10 @@ function fetchSurahDetail(nomor) {
         })
         .catch(error => {
             console.error('Error fetching Surah details:', error);
-            console.log('Error message:', error.message); // Tambahkan console.log untuk pesan error
+            console.log('Error message:', error.message); // Cetak pesan error
             document.getElementById('surah-detail').innerHTML = '<p>Error fetching Surah details. Please try again later.</p>';
         });
 }
-
 
 function displaySurahDetail(surah) {
     let surahDetail = document.getElementById('surah-detail');
