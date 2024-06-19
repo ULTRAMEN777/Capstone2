@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    // Slick Carousel
+    // Slick Carousel initialization
     $('.slick-carousel').slick({
         infinite: true,
         slidesToShow: 1,
@@ -20,8 +20,8 @@ $(document).ready(function(){
         autoplaySpeed: 3000,
     });
 
-// index.js
-$(document).ready(function(){
+
+    // Fetching surah data from API
     fetch('https://equran.id/api/v2/surat')
         .then(response => {
             if (!response.ok) {
@@ -30,53 +30,68 @@ $(document).ready(function(){
             return response.json();
         })
         .then(data => {
-            console.log(data); // Debugging: cek data yang diterima
+            console.log(data); // Debugging: Check received data
             let surahList = $('#surah-list');
-            const surahData = data.data; // Simpan data surah di variabel lokal
+            const surahData = data.data; // Save surah data locally
             
-            // Fungsi untuk menampilkan daftar surah
+            // Function to display list of surahs
             function displaySurahs(surahs) {
-                surahList.empty(); // Kosongkan daftar surah sebelum menambahkan yang baru
+                surahList.empty(); // Clear surah list before adding new items
                 surahs.forEach(surah => {
-                    let surahItem = `<div class="surah-item">
-                                        <h3><a href="detail.html?nomor=${surah.nomor}">${surah.namaLatin}</a></h3>
-                                        <p>${surah.arti}</p>
-                                    </div>`;
+                    // Check if surah is bookmarked
+                    let isBookmarked = localStorage.getItem(`bookmark_${surah.nomor}`);
+                    let bookmarkIconClass = isBookmarked ? 'fas' : 'far'; // Solid or regular star icon
+
+                    // Create surah item with bookmark button
+                    let surahItem = $(`
+                        <div class="surah-item">
+                            <h3><a href="detail.html?nomor=${surah.nomor}">${surah.namaLatin}</a></h3>
+                            <p>${surah.arti}</p>
+                            <button class="bookmark-btn" data-surah="${surah.nomor}">
+                                <i class="${bookmarkIconClass} fa-star fa-lg"></i>
+                            </button>
+                        </div>
+                    `);
+
+                    // Handle bookmark button click
+                    surahItem.find('.bookmark-btn').click(function() {
+                        let surahNumber = $(this).data('surah');
+                        let isBookmarked = localStorage.getItem(`bookmark_${surahNumber}`);
+                        
+                        // Toggle bookmark state
+                        if (isBookmarked) {
+                            localStorage.removeItem(`bookmark_${surahNumber}`);
+                            $(this).find('i').removeClass('fas').addClass('far');
+                        } else {
+                            localStorage.setItem(`bookmark_${surahNumber}`, 'true');
+                            $(this).find('i').removeClass('far').addClass('fas');
+                        }
+                    });
+
+                    // Append surah item to surah list
                     surahList.append(surahItem);
                 });
             }
 
-            displaySurahs(surahData); // Tampilkan daftar surah saat pertama kali memuat halaman
+            displaySurahs(surahData); // Display surah list when page first loads
 
-            // Handle pencarian surah
+            // Handle surah search
             $('#search-input').on('input', function() {
                 let searchText = $(this).val().trim().toLowerCase();
                 if (searchText === '') {
-                    displaySurahs(surahData); // Jika search kosong, tampilkan semua surah
+                    displaySurahs(surahData); // Show all surahs if search is empty
                 } else {
-                    // Filter surah berdasarkan nama atau nomor surah
+                    // Filter surahs based on name or number
                     let filteredSurahs = surahData.filter(surah => {
                         return surah.namaLatin.toLowerCase().includes(searchText) || surah.nomor.toString().includes(searchText);
                     });
-                    displaySurahs(filteredSurahs); // Tampilkan hasil pencarian
+                    displaySurahs(filteredSurahs); // Display search results
                 }
             });
         })
         .catch(error => console.error('Error:', error));
+
+
+
 });
-
-function openModal() {
-    document.getElementById('modal').style.display = 'block';
-}
-
-function closeModal() {
-    document.getElementById('modal').style.display = 'none';
-}
-
-window.onclick = function(event) {
-    var modal = document.getElementById('modal');
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-}
-});
+ 
