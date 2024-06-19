@@ -7,4 +7,4 @@ Sebuah platform sederhana untuk membaca Al-Qur'an secara online dengan berbagai 
 1. Clone repositori ini ke dalam direktori lokal Anda:
 
    ```bash
-   git clone https://github.com/username/al-quran-online.git
+   (https://github.com/ULTRAMEN777/Capstone2.git)
