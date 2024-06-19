@@ -74,39 +74,6 @@ function displaySurahDetail(surah) {
     });
 }
 
-function updateBookmarkButton(isBookmarked) {
-    const bookmarkButton = document.getElementById('bookmark-button');
-    if (bookmarkButton) {
-        bookmarkButton.textContent = isBookmarked ? 'Hapus Bookmark' : 'Tambah Bookmark';
-    } else {
-        console.error('Bookmark button element not found.');
-    }
-}
-
-function isSurahBookmarked(surahNumber) {
-    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-    return bookmarks.includes(surahNumber);
-}
-
-function toggleBookmark() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const surahNumber = urlParams.get('nomor');
-
-    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-
-    if (isSurahBookmarked(surahNumber)) {
-        // Remove bookmark
-        bookmarks = bookmarks.filter(item => item !== surahNumber);
-    } else {
-        // Add bookmark
-        bookmarks.push(surahNumber);
-    }
-
-    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-    updateBookmarkButton(surahNumber);
-}
-
 function goBack() {
     window.history.back();
 }
