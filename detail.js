@@ -68,12 +68,12 @@ function displaySurahDetail(surah) {
     });
 }
 
-function updateBookmarkButton(surahNumber) {
-    const bookmarkBtn = document.getElementById('bookmark-btn');
-    if (isSurahBookmarked(surahNumber)) {
-        bookmarkBtn.textContent = 'Remove Bookmark';
+function updateBookmarkButton(isBookmarked) {
+    const bookmarkButton = document.getElementById('bookmark-button');
+    if (bookmarkButton) {
+        bookmarkButton.textContent = isBookmarked ? 'Hapus Bookmark' : 'Tambah Bookmark';
     } else {
-        bookmarkBtn.textContent = 'Bookmark';
+        console.error('Bookmark button element not found.');
     }
 }
 
