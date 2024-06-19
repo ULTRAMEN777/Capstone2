@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Qur'an Online Nasional</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Mari Mengaji</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#surah-list" id="baca-quran">Baca Qur'an</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li>
+                        <a href="#">Akun <i class="fa fa-caret-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#">Registrasi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <video autoplay muted loop id="bg-video">
+                <source src="vidio.mp4" type="video/mp4">
+            </video>
+            <div class="container">
+                <h2>Selamat Datang Mari Mengaji</h2>
+                <p>Baca dan pahami Al-Qur'an dengan mudah dari mana saja</p>
+                <button onclick="openModal()">Baca Sekarang</button>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="feature">
+                    <i class="fas fa-book-open fa-3x"></i>
+                    <h3>Baca Al-Qur'an</h3>
+                    <p>Akses seluruh surah dalam Al-Qur'an.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-language fa-3x"></i>
+                    <h3>Terjemahan</h3>
+                    <p>Lihat terjemahan dalam bahasa Indo dan Arab.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-book-reader fa-3x"></i>
+                    <h3>Tafsir</h3>
+                    <p>Pahami lebih dalam dengan tafsir dari ulama.</p>
+                </div>
+            </div>
+        </section>
+
+        <div id="container">
+            <h1>Daftar Surah</h1>
+            <input type="text" id="search-input" placeholder="Cari surah...">
+            <div id="surah-list"></div>
+        </div>
+
+        <section class="carousel">
+            <div class="container">
+                <div class="slick-carousel">
+                    <div><img src="img1.png" alt="Image 1"></div>
+                    <div><img src="img2.png" alt="Image 2"></div>
+                    <div><img src="img3.png" alt="Image 3"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2>Testimoni</h2>
+                <div class="testimonial-carousel">
+                    <div>
+                        <p>"Al-Qur'an Online Nasional sangat membantu saya dalam memahami Al-Qur'an."</p>
+                        <h3>- Ahmad</h3>
+                    </div>
+                    <div>
+                        <p>"Platform ini luar biasa! Mudah digunakan dan sangat informatif."</p>
+                        <h3>- Siti</h3>
+                    </div>
+                    <div>
+                        <p>"Saya bisa belajar Al-Qur'an kapan saja dan di mana saja."</p>
+                        <h3>- Ali</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Ayo Bergabung Bersama Kami!</h2>
+                <p>Dapatkan informasi terbaru dan fitur eksklusif lainnya.</p>
+                <form>
+                    <input type="email" placeholder="Masukkan email Anda" required>
+                    <button type="submit">Daftar Sekarang</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2024 Al-Qur'an Online Nasional. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Mulai Membaca Al-Qur'an</h2>
+            <p>Pilih surah untuk mulai membaca:</p>
+            <button>Pilih Surah</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script src="index.js"></script>
+</body>
+</html>
