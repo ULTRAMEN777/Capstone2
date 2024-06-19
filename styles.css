@@ -260,6 +260,9 @@ header nav ul .dropdown li a {
 .carousel .slick-slide img {
     width: 100%;
     border-radius: 10px;
+    max-height: 500px;
+    max-width: 1600px;
+    
 }
 
 .testimonials {
@@ -297,69 +300,11 @@ header nav ul .dropdown li a {
     margin-top: 10px;
 }
 
-.cta {
-    background-color: #004d00;
-    color: white;
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.cta .container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.cta h2 {
-    color: #ffffff;
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.cta p {
-    color: #ffffff;
-    font-size: 1.2em;
-    margin-bottom: 30px;
-}
-
-.cta form {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.cta form input[type="email"] {
-    padding: 10px;
-    font-size: 1em;
-    border: none;
-    border-radius: 5px;
-    margin-right: 10px;
-    width: 70%;
-    max-width: 300px;
-}
-
-.cta form button {
-    background-color: #ff9800;
-    border: none;
-    padding: 10px 20px;
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.cta form button:hover {
-    background-color: #e68900;
-}
-
 footer {
     background-color: #004d00;
     color: white;
     text-align: center;
     padding: 20px 0;
-}
-
-footer .p{
-    color: #ffffff;
 }
 
 footer .container {
@@ -382,6 +327,10 @@ footer .socials a {
     margin: 0 10px;
     font-size: 1.2em;
     transition: color 0.3s;
+}
+
+footer .container p {
+    color: white;
 }
 
 footer .socials a:hover {
@@ -473,19 +422,37 @@ footer .socials a:hover {
     box-sizing: border-box;
 }
 
-/* styles.css */
 #surah-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    max-height: 400px; /* Atur tinggi maksimum untuk daftar surah */
+    overflow-y: auto; /* Aktifkan scroll vertikal jika konten melebihi tinggi maksimum */
 }
 
 .surah-item {
-    border: 1px solid #ddd;
     padding: 10px;
-    background-color: #f9f9f9;
-    text-decoration: none;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.surah-item h3 {
+    margin-bottom: 5px;
+}
+
+.surah-item p {
+    margin-bottom: 0;
+}
+
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ffd700; /* Warna bintang kuning untuk bookmark */
+}
+
+.bookmark-btn:hover {
+    color: #ffcc00; /* Warna kuning yang sedikit lebih gelap saat hover */
+} 
 
 .surah-item a{
     text-decoration: none;
@@ -494,3 +461,5 @@ footer .socials a:hover {
 .testimonials h2, p {
     color: #423a3a;
 }
+
+/* styles.css */
