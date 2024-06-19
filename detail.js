@@ -24,9 +24,11 @@ function fetchSurahDetail(nomor) {
         })
         .catch(error => {
             console.error('Error fetching Surah details:', error);
+            console.log('Error message:', error.message); // Tambahkan console.log untuk pesan error
             document.getElementById('surah-detail').innerHTML = '<p>Error fetching Surah details. Please try again later.</p>';
         });
 }
+
 
 function displaySurahDetail(surah) {
     let surahDetail = document.getElementById('surah-detail');
