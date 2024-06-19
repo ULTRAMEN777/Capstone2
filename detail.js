@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (surahNumber) {
         fetchSurahDetail(surahNumber);
+        updateBookmarkButton(surahNumber); // Update bookmark button status when page is loaded
     } else {
         document.getElementById('surah-detail').innerHTML = '<p>Invalid Surah number.</p>';
     }
@@ -34,6 +35,7 @@ function displaySurahDetail(surah) {
         <p>${surah.deskripsi}</p>
         <h3>Ayat:</h3>
         <div id="ayat-list"></div>
+        <button id="bookmark-btn" onclick="toggleBookmark()">Bookmark</button>
     `;
     
     let ayatList = document.getElementById('ayat-list');
@@ -46,14 +48,14 @@ function displaySurahDetail(surah) {
             <p>${ayat.teksLatin}</p>
             <p>${ayat.teksIndonesia}</p>
             <audio controls id="audio-${index}">
-                <source src="${ayat.audio['01']}" type="audio/mpeg">
+                <source src="${ayat.audio['05']}" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
         `;
         ayatList.appendChild(ayatItem);
     });
 
-    // Add event listeners for autoplay
+    // Add event listener for autoplay
     const audioElements = document.querySelectorAll('audio');
     audioElements.forEach((audio, index) => {
         audio.addEventListener('ended', () => {
@@ -62,6 +64,39 @@ function displaySurahDetail(surah) {
             }
         });
     });
+}
+
+function updateBookmarkButton(surahNumber) {
+    const bookmarkBtn = document.getElementById('bookmark-btn');
+    if (isSurahBookmarked(surahNumber)) {
+        bookmarkBtn.textContent = 'Remove Bookmark';
+    } else {
+        bookmarkBtn.textContent = 'Bookmark';
+    }
+}
+
+function isSurahBookmarked(surahNumber) {
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+    return bookmarks.includes(surahNumber);
+}
+
+function toggleBookmark() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const surahNumber = urlParams.get('nomor');
+
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+
+    if (isSurahBookmarked(surahNumber)) {
+        // Remove bookmark
+        bookmarks = bookmarks.filter(item => item !== surahNumber);
+    } else {
+        // Add bookmark
+        bookmarks.push(surahNumber);
+    }
+
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    updateBookmarkButton(surahNumber);
 }
 
 function goBack() {
